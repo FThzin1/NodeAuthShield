@@ -1,5 +1,7 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify"
 import bcrypt from 'bcrypt';
+import { addToCache,checkEmailInCache } from "./cache";
+
 
 interface UserData {
   email: string;
@@ -15,6 +17,9 @@ export const auth = (fastify: FastifyInstance): void => {
     if (usuarioEncontrado) {
       const hash = await bcrypt.compare(senha,usuarioEncontrado.senha)
       if (hash) {
+        if (!checkEmailInCache(email)) {
+          addToCache(email,hash)
+        }
         return { status : true }
       }
     }
@@ -27,6 +32,11 @@ export const auth = (fastify: FastifyInstance): void => {
       const hashedPassword = await bcrypt.hash(senha, 13);
       const novoUsuario: UserData = { email, senha: hashedPassword };
       fakedb.push(novoUsuario);
+
+      if (!checkEmailInCache(email)) {
+        addToCache(email,hashedPassword)
+      }
+
       return {hash: hashedPassword}
     } else {
       return {message: "Invalido"}
