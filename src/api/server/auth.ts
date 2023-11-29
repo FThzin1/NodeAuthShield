@@ -1,7 +1,6 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify"
 import bcrypt from 'bcrypt';
 
-
 interface UserData {
   email: string;
   senha: string;
