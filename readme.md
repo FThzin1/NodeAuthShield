@@ -10,10 +10,10 @@ NodeAuth Shield é um projeto de autenticação em Node.js que utiliza Fastify e
 
 ## Tecnologias Utilizadas
 
-- Node.js com Express
-- Banco de dados (MongoDB, PostgreSQL, etc.)
-- Ferramentas para testes (Jest, Mocha, etc.)
-- Ferramentas de documentação (Swagger, Postman, etc.)
+- Node.js com Fastify
+- Banco de dados (MongoDB)
+- Ferramentas para testes (Jest)
+- Ferramentas de documentação (Thunder Client.)
 
 ## Como Usar
 
